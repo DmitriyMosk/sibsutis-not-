@@ -1,0 +1,33 @@
+|test
+clk => dig[0].CLK
+clk => dig[1].CLK
+clk => dig[2].CLK
+clk => dig[3].CLK
+clk => dig[4].CLK
+clk => dig[5].CLK
+clk => dig[6].CLK
+clk => dig[7].CLK
+clk => dig[8].CLK
+clk => dig[9].CLK
+clk => dig[10].CLK
+clk => dig[11].CLK
+clk => dig[12].CLK
+clk => dig[13].CLK
+clk => dig[14].CLK
+clk => dig[15].CLK
+clk => dig[16].CLK
+clk => dig[17].CLK
+clk => dig[18].CLK
+clk => dig[19].CLK
+clk => dig[20].CLK
+clk => dig[21].CLK
+clk => dig[22].CLK
+clk => dig[23].CLK
+clk => dig[24].CLK
+clk => dig[25].CLK
+led1 <= dig[25].DB_MAX_OUTPUT_PORT_TYPE
+led2 <= dig[22].DB_MAX_OUTPUT_PORT_TYPE
+led3 <= dig[23].DB_MAX_OUTPUT_PORT_TYPE
+led4 <= dig[24].DB_MAX_OUTPUT_PORT_TYPE
+
+
