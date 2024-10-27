@@ -1,0 +1,56 @@
+module uart (
+    input wire clk, // Входной тактовый сигнал
+    input wire rst, // Сброс
+    input wire rx, // Вход UART
+    output wire tx, // Выход UART
+    output wire led // Индикация светодиода
+);
+    wire [7:0] data_out;
+    wire valid;
+    wire [7:0] fifo_out;
+    wire fifo_full;
+    wire fifo_empty;
+    wire pll_clk;
+
+    // Инстанцирование модулей
+    uart_rx rx_inst (
+        .clk(pll_clk),
+        .rst(rst),
+        .rx(rx),
+        .data_out(data_out),
+        .valid(valid),
+        .led(led)
+    );
+
+    uart_tx tx_inst (
+        .clk(pll_clk),
+        .rst(rst),
+        .start(valid),
+        .data_in(fifo_out),
+        .tx(tx)
+    );
+
+    shift_reg shift_reg_inst (
+        .clk(pll_clk),
+        .rst(rst),
+        .data_in(data_out),
+        .load(valid),
+        .data_out(fifo_out)
+    );
+
+    pll pll_inst (
+        .clk_in(clk),
+        .clk_out(pll_clk)
+    );
+
+    fifo fifo_inst (
+        .clk(pll_clk),
+        .rst(rst),
+        .data_in(data_out),
+        .wr_en(valid),
+        .rd_en(!fifo_empty),
+        .data_out(fifo_out),
+        .full(fifo_full),
+        .empty(fifo_empty)
+    );
+endmodule
