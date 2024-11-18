@@ -21,16 +21,6 @@ module uart (
         .locked()            
     );
 
-    // Инстанцирование модуля UART приёма
-    uart_rx rx_inst (
-        .clk(pll_clk),
-        .rst(rst),
-        .rx(rx),
-        .data_out(data_out),
-        .valid(valid),
-        .led(led)
-    );
-
     // Инстанцирование сменного регистра
     shift_reg shift_reg_inst (
         .clk(pll_clk),
@@ -52,6 +42,16 @@ module uart (
         .empty(fifo_empty)
     );
 
+    // Инстанцирование модуля UART приёма
+    uart_rx rx_inst (
+        .clk(pll_clk),
+        .rst(rst),
+        .rx(rx),
+        .data_out(data_out),
+        .valid(valid),
+        .led(led)
+    );
+    
     // Инстанцирование модуля UART передачи
     uart_tx tx_inst (
         .clk(pll_clk),

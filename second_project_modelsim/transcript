@@ -1,0 +1,15 @@
+vsim -gui work.cnt_en_testbanch -t ps
+# vsim -gui work.cnt_en_testbanch -t ps 
+# Start time: 00:13:57 on Oct 05,2024
+# Loading sv_std.std
+# Loading work.cnt_en_testbanch
+# Loading work.trigger_x
+# Loading work.counter_enbl
+# Compile of cnt_en_testbanch.sv was successful.
+# Compile of cnt_pll.sv was successful.
+# Compile of counter_enbl.sv was successful.
+# Compile of trigger_x.sv was successful.
+# 4 compiles, 0 failed with no errors.
+run -all
+# End time: 00:15:12 on Oct 05,2024, Elapsed time: 0:01:15
+# Errors: 0, Warnings: 2

@@ -1,0 +1,16 @@
+# Compile of cnt_en_testbanch.sv was successful.
+# Compile of cnt_pll.sv was successful.
+# Compile of counter_enbl.sv was successful.
+# Compile of trigger_x.sv was successful.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.cnt_en_testbanch
+# vsim -gui work.cnt_en_testbanch 
+# Start time: 00:20:49 on Oct 05,2024
+# Loading sv_std.std
+# Loading work.cnt_en_testbanch
+# Loading work.trigger_x
+# Loading work.counter_enbl
+add wave sim:/cnt_en_testbanch/*
+run -all
+# End time: 00:22:51 on Oct 05,2024, Elapsed time: 0:02:02
+# Errors: 0, Warnings: 5
