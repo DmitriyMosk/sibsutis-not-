@@ -310,13 +310,13 @@ namespace xserial {
         /**@brief Показать список доступых портов
         Функция печатает в терминале список доступых портов.
         */
-        void printListSerialPorts(void);
+        static void printListSerialPorts(void);
 
         /**@brief Получить список доступых портов
         Функция возарщает список доступых портов.
         @param[out] serial ссылка на std::vector<std::string>
         */
-        void getListSerialPorts(std::vector<std::wstring>& serial);
+        static void getListSerialPorts(std::vector<std::wstring>& serial);
 
     };
 }

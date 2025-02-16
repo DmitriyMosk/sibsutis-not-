@@ -3,21 +3,21 @@
 template <typename T> 
 ToneGenerator<T>::ToneGenerator(const long double freq, WAVE_TYPE type, const long double sample_rate, size_t sample_size) 
     : tone_freq(freq), wave_type(type), sample_rate(sample_rate), sample_size(sample_size) { 
-        buffer = new T[sample_size]; 
+    buffer = new T[sample_size]; 
 
-        /**
-         * Хе-хе, Калачикова тебе в рот
-         * А ну-ка Котельникова–Шеннона любим!!!
-         */
-        assert(tone_freq < sample_rate / 2); 
-    } 
+    /**
+     * Хе-хе, Калачикова тебе в рот
+     * А ну-ка Котельникова–Шеннона любим!!!
+     */
+    assert(tone_freq < sample_rate / 2); 
+} 
 
 template <typename T> ToneGenerator<T>::~ToneGenerator() { 
     delete[] buffer; 
 }
 
 template <typename T>
-void ToneGenerator<T>::Generate(T* &buffptr) {
+T* ToneGenerator<T>::Generate() {
     std::memset(buffer, static_cast<T>(0), sizeof(T) * sample_size);
 
     switch (wave_type) {
@@ -37,7 +37,7 @@ void ToneGenerator<T>::Generate(T* &buffptr) {
             break;
     }
 
-    buffptr = buffer;
+    return buffer;
 }
 
 template <typename T>

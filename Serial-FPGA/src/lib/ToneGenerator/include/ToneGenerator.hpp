@@ -52,13 +52,14 @@ public:
      * @param sample_rate   float - частота дискретизации  
      * @param sample_size   size_t - размер буффера (длительность сигнала)
      */
+    ToneGenerator(const ToneGenerator& oth);
     ToneGenerator(const long double freq, const WAVE_TYPE type, const long double sample_rate, const size_t sample_size);
     ~ToneGenerator();
 
     /** 
      * TODO: docs
      */
-    void Generate(T* &buffptr); 
+    T* Generate(); 
 
     /**
      * TODO: docs

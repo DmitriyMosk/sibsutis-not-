@@ -11,7 +11,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Опции для выбора приложения
 option(BUILD_FPGA_APP       "Build FPGA application"      ON)
 option(BUILD_MAIN_APP       "Build main application"      ON)
-option(BUILD_TERMINAL_APP   "Build Termianl application"  ON)
 option(BUILD_SHIFT_APP      "Build Shift application"     ON)
 
 # Указание статических библиотек
@@ -25,8 +24,6 @@ add_subdirectory(src/lib/Audio_player_v2)
 add_subdirectory(src/lib/Audio_recorder_v2)
 add_subdirectory(src/lib/xserial)
 add_subdirectory(src/lib/ToneGenerator)
-add_subdirectory(src/lib/Bench)
-add_subdirectory(src/lib/Terminal)
 
 # Общие исходные файлы
 set(SHARED_SOURCE_FILES
@@ -34,7 +31,6 @@ set(SHARED_SOURCE_FILES
     src/shared/CodeDurationTimer.cpp
     src/shared/file_open_close.cpp
     src/shared/Mode_switcher.cpp
-    src/shared/uart.cpp
 )
 
 # Добавляем зависимости
@@ -44,8 +40,6 @@ set(SHARED_DEPENDENCIES
     Audio_recorder_v2
     xserial
     ToneGenerator
-    Bench
-    Terminal
 )
 
 ###
@@ -92,22 +86,6 @@ if(BUILD_MAIN_APP)
     )
 endif()
 
-# Terminal Application
-if(BUILD_TERMINAL_APP)
-    add_executable(term_app
-        ${SHARED_SOURCE_FILES}
-        src/cmd/terminal_app/main.cpp
-    )
-    #add_dependencies(term_app DeleteFiles)
-    target_include_directories(term_app PRIVATE
-        ${CMAKE_SOURCE_DIR}/src/shared
-    )
-    target_link_libraries(term_app PRIVATE
-        ${SHARED_DEPENDENCIES}
-        dsound_x64
-    )
-endif()
-
 if(BUILD_SHIFT_APP)
     add_executable(fpga_shift_app
         ${SHARED_SOURCE_FILES}
@@ -123,6 +101,6 @@ if(BUILD_SHIFT_APP)
     )
 endif()
 
-if(NOT BUILD_FPGA_APP AND NOT BUILD_MAIN_APP AND NOT BUILD_TERMINAL_APP AND NOT BUILD_SHIFT_APP)
+if(NOT BUILD_FPGA_APP AND NOT BUILD_MAIN_APP AND NOT BUILD_SHIFT_APP)
     message(FATAL_ERROR "Please enable at least one option: BUILD_FPGA_APP or BUILD_MAIN_APP or BUILD_TERMINAL_APP or BUILD_SHIFT_APP.")
 endif()
