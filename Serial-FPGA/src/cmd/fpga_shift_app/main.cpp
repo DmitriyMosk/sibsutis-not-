@@ -102,20 +102,9 @@ static void input_chose_port(int &portNum) {
 	scanf("%d", &portNum);
 }
 
-static void choose_dalay_before_start(int& delay) {
-	const int size = 2;	// 2-e цифры в eводимом числе
-	char ch[size+1] = {0};
-	bool flag_incorrect_input = 0;	//1 если ошибка
-	while (1) {
-		printf("Enter a delay from 0 to 30 seconds: ");
-		std::cin.ignore(32767, '\n');
-		std::cin.get(ch, size+1);
-		for (int i = 0; i < size; i++) 
-			if (!(ch[i]>= 48 && ch[i] <= 57 || ch[i] == 0)) flag_incorrect_input = 1; //проверка что строка содержит только цифры
-		delay = atoi(ch); //перевод строки в число
-		if (delay >= 0 && delay <= 30 && flag_incorrect_input == 0) break; //выходим из цикла, если задержка указана корректно
-		else printf("Incorrect input. Enter the data correctly\n");
-	}
+static void choose_delay_before_start(int& delay) {
+    printf("Enter a delay from 0 to 30 seconds: ");
+    scanf("%d", &delay);
 }
 
 /**
@@ -241,7 +230,7 @@ void uart_shifter(bool request_file_record, bool use_tone_generator) {
     
     if (!use_tone_generator) { 
         int bufferDelay = 0; 
-        choose_dalay_before_start(bufferDelay);
+        choose_delay_before_start(bufferDelay);
         snd_din_buffer.push_zeros(bufferDelay * elementsInQueueInSec); 
     }
 
